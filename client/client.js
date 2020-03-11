@@ -2,6 +2,8 @@
 const form = document.querySelector('form')
 const loading = document.querySelector('.loading')
 
+const API_URL = 'http://localhost:5000/Dweets'
+
 loading.style.display = 'none'
 form.addEventListener('submit' , (event) => {
     event.preventDefault();
@@ -16,5 +18,12 @@ form.addEventListener('submit' , (event) => {
     }
     form.style.display = 'none'
     loading.style.display = 'block'
-    console.log(Dweet)
+    
+    fetch(API_URL, {
+        method: 'POST',
+        body:JSON.stringify(Dweet),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 })
