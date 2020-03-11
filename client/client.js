@@ -5,6 +5,8 @@ const loading = document.querySelector('.loading')
 const API_URL = 'http://localhost:5000/Dweets'
 
 loading.style.display = 'none'
+
+
 form.addEventListener('submit' , (event) => {
     event.preventDefault();
     // pegando dados do formulário e transformando tudo em objeto 
@@ -25,5 +27,12 @@ form.addEventListener('submit' , (event) => {
         headers: {
             'content-type': 'application/json'
         }
+    })
+    .then(response => response.json())
+    .then(createdDweet => {
+        console.log(createdDweet)
+        form.reset()
+        loading.style.display = 'none'
+        form.style.display = 'block'
     })
 })
